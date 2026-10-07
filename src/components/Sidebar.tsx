@@ -13,7 +13,7 @@ import {
   CheckSquare,
   Award,
   LogOut,
-  UserCheck,
+  Sparkles,
 } from 'lucide-react';
 import { useAuthStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
@@ -55,19 +55,21 @@ export default function Sidebar({ role }: { role: 'ADMIN' | 'INSTRUCTOR' | 'STUD
   const links = role === 'ADMIN' ? adminLinks : role === 'INSTRUCTOR' ? instructorLinks : studentLinks;
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-800 text-slate-300 min-h-screen p-4 flex flex-col justify-between">
+    <aside className="w-64 bg-[#0F172A] border-r border-indigo-900/20 text-slate-300 min-h-screen p-5 flex flex-col justify-between shadow-2xl">
       <div>
-        <div className="p-3 mb-6 bg-slate-800/60 rounded-xl border border-slate-700/50 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-blue-600/30 text-blue-400 flex items-center justify-center font-bold text-lg">
+        <div className="p-4 mb-6 bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/20 rounded-2xl flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center font-extrabold text-base shadow-md shadow-indigo-500/25">
             {user?.name?.[0] || 'U'}
           </div>
           <div className="overflow-hidden">
-            <h4 className="text-white text-sm font-semibold truncate">{user?.name || 'User'}</h4>
-            <p className="text-xs text-blue-400 font-medium">{role}</p>
+            <h4 className="text-white text-sm font-bold truncate">{user?.name || 'User'}</h4>
+            <span className="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              <Sparkles className="w-2.5 h-2.5" /> {role}
+            </span>
           </div>
         </div>
 
-        <nav className="space-y-1">
+        <nav className="space-y-1.5">
           {links.map((link) => {
             const Icon = link.icon;
             const isActive = pathname === link.href;
@@ -75,10 +77,10 @@ export default function Sidebar({ role }: { role: 'ADMIN' | 'INSTRUCTOR' | 'STUD
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
+                className={`flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-semibold transition ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow'
-                    : 'hover:bg-slate-800 hover:text-white text-slate-400'
+                    ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-600/30'
+                    : 'hover:bg-slate-800/80 hover:text-white text-slate-400'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -89,10 +91,10 @@ export default function Sidebar({ role }: { role: 'ADMIN' | 'INSTRUCTOR' | 'STUD
         </nav>
       </div>
 
-      <div className="pt-4 border-t border-slate-800">
+      <div className="pt-4 border-t border-slate-800/80">
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition"
+          className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:bg-rose-500/10 hover:text-rose-400 transition"
         >
           <LogOut className="w-4 h-4" />
           <span>Sign Out</span>
