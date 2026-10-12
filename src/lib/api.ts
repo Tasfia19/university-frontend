@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'university-backend-kappa.vercel.app';
+const API_BASE_URL =
+	process.env.NEXT_PUBLIC_API_URL ||
+	"https://university-backend-kappa.vercel.app";
 // "http://localhost:5000/api/v1";
 
 export async function apiFetch<T = any>(
