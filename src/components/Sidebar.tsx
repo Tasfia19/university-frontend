@@ -36,6 +36,7 @@ export default function Sidebar({ role }: { role: 'ADMIN' | 'INSTRUCTOR' | 'STUD
     { href: '/admin', label: 'Overview & Charts', icon: LayoutDashboard },
     { href: '/admin/courses', label: 'Courses Management', icon: BookOpen },
     { href: '/admin/departments', label: 'Departments & Programs', icon: Building },
+    { href: '/admin/payments', label: 'Student Payments', icon: CreditCard },
     { href: '/admin/audit-logs', label: 'System Audit Logs', icon: ShieldAlert },
   ];
 
