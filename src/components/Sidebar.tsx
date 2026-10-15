@@ -14,18 +14,26 @@ import {
   Award,
   LogOut,
   Sparkles,
+  X,
 } from 'lucide-react';
 import { useAuthStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
 import { apiFetch } from '@/lib/api';
 import { toast } from 'sonner';
 
-export default function Sidebar({ role }: { role: 'ADMIN' | 'INSTRUCTOR' | 'STUDENT' }) {
+export default function Sidebar({
+  role,
+  onClose,
+}: {
+  role: 'ADMIN' | 'INSTRUCTOR' | 'STUDENT';
+  onClose?: () => void;
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useAuthStore();
 
   const handleLogout = async () => {
+    onClose?.();
     await apiFetch('/auth/logout', { method: 'POST' });
     logout();
     toast.success('Logged out successfully');
@@ -58,16 +66,27 @@ export default function Sidebar({ role }: { role: 'ADMIN' | 'INSTRUCTOR' | 'STUD
   return (
     <aside className="w-64 bg-[#0F172A] border-r border-indigo-900/20 text-slate-300 min-h-screen p-5 flex flex-col justify-between shadow-2xl">
       <div>
-        <div className="p-4 mb-6 bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/20 rounded-2xl flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center font-extrabold text-base shadow-md shadow-indigo-500/25">
-            {user?.name?.[0] || 'U'}
+        <div className="p-4 mb-6 bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/20 rounded-2xl flex items-center justify-between">
+          <div className="flex items-center gap-3 overflow-hidden">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex-shrink-0 flex items-center justify-center font-extrabold text-base shadow-md shadow-indigo-500/25">
+              {user?.name?.[0] || 'U'}
+            </div>
+            <div className="overflow-hidden">
+              <h4 className="text-white text-sm font-bold truncate">{user?.name || 'User'}</h4>
+              <span className="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                <Sparkles className="w-2.5 h-2.5" /> {role}
+              </span>
+            </div>
           </div>
-          <div className="overflow-hidden">
-            <h4 className="text-white text-sm font-bold truncate">{user?.name || 'User'}</h4>
-            <span className="inline-flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-              <Sparkles className="w-2.5 h-2.5" /> {role}
-            </span>
-          </div>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+              aria-label="Close sidebar"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
         <nav className="space-y-1.5">
@@ -78,6 +97,7 @@ export default function Sidebar({ role }: { role: 'ADMIN' | 'INSTRUCTOR' | 'STUD
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => onClose?.()}
                 className={`flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-semibold transition ${
                   isActive
                     ? 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-600/30'

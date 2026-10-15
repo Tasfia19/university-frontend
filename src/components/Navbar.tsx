@@ -120,22 +120,26 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-[#0f172a] border-b border-indigo-900/30 px-4 pt-2 pb-4 space-y-2">
-          <Link href="/" className="block py-2 text-slate-300 hover:text-white">Home</Link>
-          <Link href="/about" className="block py-2 text-slate-300 hover:text-white">About</Link>
-          <Link href="/courses" className="block py-2 text-slate-300 hover:text-white">Courses</Link>
-          <Link href="/pricing" className="block py-2 text-slate-300 hover:text-white">Tuition & Fees</Link>
-          <Link href="/contact" className="block py-2 text-slate-300 hover:text-white">Contact</Link>
+          <Link href="/" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-white">Home</Link>
+          <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-white">About</Link>
+          <Link href="/courses" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-white">Courses</Link>
+          <Link href="/pricing" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-white">Tuition & Fees</Link>
+          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-white">Contact</Link>
 
           {user ? (
             <div className="pt-2 border-t border-slate-800 space-y-2">
               <Link
                 href={getDashboardLink()}
+                onClick={() => setMobileMenuOpen(false)}
                 className="block bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium"
               >
                 Dashboard ({user.role})
               </Link>
               <button
-                onClick={handleLogout}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleLogout();
+                }}
                 className="w-full text-center text-rose-400 py-2 hover:bg-slate-800 rounded-xl"
               >
                 Logout
@@ -143,8 +147,8 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="pt-2 border-t border-slate-800 flex gap-2">
-              <Link href="/login" className="flex-1 text-center py-2 bg-slate-800 text-white rounded-xl">Login</Link>
-              <Link href="/register" className="flex-1 text-center py-2 bg-indigo-600 text-white rounded-xl font-semibold">Register</Link>
+              <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="flex-1 text-center py-2 bg-slate-800 text-white rounded-xl">Login</Link>
+              <Link href="/register" onClick={() => setMobileMenuOpen(false)} className="flex-1 text-center py-2 bg-indigo-600 text-white rounded-xl font-semibold">Register</Link>
             </div>
           )}
         </div>

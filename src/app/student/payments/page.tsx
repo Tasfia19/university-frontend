@@ -97,14 +97,14 @@ export default function StudentPaymentsPage() {
           ) : (
             <div className="space-y-3">
               {payments.map((p) => (
-                <div key={p.id} className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex items-center justify-between">
-                  <div>
-                    <span className="text-xs text-slate-400 font-mono">Trx: {p.transactionId}</span>
-                    <h4 className="text-base font-bold text-white">৳ {p.amount.toLocaleString()}</h4>
+                <div key={p.id} className="bg-slate-950/60 border border-slate-800 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <span className="text-xs text-slate-400 font-mono break-all">Trx: {p.transactionId}</span>
+                    <h4 className="text-base font-bold text-white mt-0.5">৳ {p.amount.toLocaleString()}</h4>
                     <p className="text-xs text-slate-400 mt-0.5">{p.type} | {new Date(p.createdAt).toLocaleDateString()}</p>
                   </div>
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-bold ${
+                    className={`self-start sm:self-auto px-3 py-1 rounded-full text-xs font-bold ${
                       p.status === 'PAID'
                         ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
                         : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
