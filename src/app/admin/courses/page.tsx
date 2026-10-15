@@ -65,14 +65,14 @@ export default function AdminCoursesPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold text-white">Course Management</h1>
-          <p className="text-slate-400 text-sm mt-1">Create, update, and manage academic courses and prerequisite mappings.</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white">Course Management</h1>
+          <p className="text-slate-400 text-xs sm:text-sm mt-1">Create, update, and manage academic courses and prerequisite mappings.</p>
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2.5 rounded-xl text-sm transition flex items-center gap-2"
+          className="self-start sm:self-auto bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-2.5 rounded-xl text-sm transition flex items-center gap-2 shadow-lg shadow-blue-600/25"
         >
           <Plus className="w-4 h-4" /> Add New Course
         </button>
@@ -83,42 +83,44 @@ export default function AdminCoursesPage() {
         <div className="py-12 text-center text-slate-400 text-sm animate-pulse">Loading course data...</div>
       ) : (
         <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-800/60 border-b border-slate-800 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                <th className="p-4">Code</th>
-                <th className="p-4">Title</th>
-                <th className="p-4">Credits</th>
-                <th className="p-4">Prerequisite</th>
-                <th className="p-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800 text-sm">
-              {courses.map((c) => (
-                <tr key={c.id} className="hover:bg-slate-800/40 transition">
-                  <td className="p-4 font-bold text-blue-400">{c.code}</td>
-                  <td className="p-4 text-white font-medium">{c.title}</td>
-                  <td className="p-4 text-slate-300">{c.credits}</td>
-                  <td className="p-4 text-slate-400 text-xs">
-                    {c.prerequisite ? (
-                      <span className="text-amber-400 font-medium">{c.prerequisite.code}</span>
-                    ) : (
-                      <span className="text-slate-500">None</span>
-                    )}
-                  </td>
-                  <td className="p-4 text-right">
-                    <button
-                      onClick={() => handleDeleteCourse(c.id)}
-                      className="text-red-400 hover:text-red-300 p-2 hover:bg-red-500/10 rounded-lg transition"
-                      title="Soft Delete Course"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </td>
+          <div className="overflow-x-auto w-full">
+            <table className="w-full min-w-[550px] text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-800/60 border-b border-slate-800 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  <th className="p-4">Code</th>
+                  <th className="p-4">Title</th>
+                  <th className="p-4">Credits</th>
+                  <th className="p-4">Prerequisite</th>
+                  <th className="p-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800 text-sm">
+                {courses.map((c) => (
+                  <tr key={c.id} className="hover:bg-slate-800/40 transition">
+                    <td className="p-4 font-bold text-blue-400 whitespace-nowrap">{c.code}</td>
+                    <td className="p-4 text-white font-medium">{c.title}</td>
+                    <td className="p-4 text-slate-300 whitespace-nowrap">{c.credits}</td>
+                    <td className="p-4 text-slate-400 text-xs whitespace-nowrap">
+                      {c.prerequisite ? (
+                        <span className="text-amber-400 font-medium">{c.prerequisite.code}</span>
+                      ) : (
+                        <span className="text-slate-500">None</span>
+                      )}
+                    </td>
+                    <td className="p-4 text-right whitespace-nowrap">
+                      <button
+                        onClick={() => handleDeleteCourse(c.id)}
+                        className="text-red-400 hover:text-red-300 p-2 hover:bg-red-500/10 rounded-lg transition"
+                        title="Soft Delete Course"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 

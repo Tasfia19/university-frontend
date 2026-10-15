@@ -90,15 +90,15 @@ export default function StudentSchedulePage() {
             <h2 className="text-lg font-bold text-white mb-4">Open Course Sections</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {availableSections.map((sec) => (
-                <div key={sec.id} className="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex items-center justify-between">
-                  <div>
+                <div key={sec.id} className="bg-slate-900 border border-slate-800 p-5 sm:p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="min-w-0">
                     <span className="text-xs font-bold text-blue-400">{sec.course?.code} - Sec {sec.sectionNumber}</span>
                     <h4 className="text-base font-bold text-white mt-1">{sec.course?.title}</h4>
                     <p className="text-xs text-slate-400 mt-1">{sec.classRoutine} | {sec.room}</p>
                   </div>
                   <button
                     onClick={() => handleRegisterSection(sec.id)}
-                    className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition flex items-center gap-1.5"
+                    className="self-start sm:self-auto bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-1.5 flex-shrink-0 shadow-md shadow-blue-600/20"
                   >
                     <Plus className="w-3.5 h-3.5" /> Enroll
                   </button>

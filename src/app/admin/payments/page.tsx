@@ -135,7 +135,7 @@ export default function AdminPaymentsPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-[#111827]/80 border border-indigo-900/30 p-4 rounded-2xl mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
+      <div className="bg-[#111827]/80 border border-indigo-900/30 p-4 rounded-2xl mb-6 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
         {/* Search Input */}
         <div className="relative w-full md:w-80">
           <Search className="w-4 h-4 absolute left-3.5 top-3 text-slate-400" />
@@ -150,14 +150,14 @@ export default function AdminPaymentsPage() {
 
         {/* Status Filter Tabs */}
         <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
-          <span className="text-xs text-slate-400 mr-2 flex items-center gap-1">
+          <span className="text-xs text-slate-400 mr-2 flex items-center gap-1 flex-shrink-0">
             <Filter className="w-3.5 h-3.5" /> Filter:
           </span>
           {['ALL', 'PENDING', 'PAID', 'FAILED', 'CANCELLED'].map((st) => (
             <button
               key={st}
               onClick={() => setStatusFilter(st)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition flex-shrink-0 ${
                 statusFilter === st
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'bg-[#1E293B] text-slate-300 hover:text-white hover:bg-slate-700'
@@ -182,8 +182,8 @@ export default function AdminPaymentsPage() {
         </div>
       ) : (
         <div className="bg-[#111827] border border-indigo-900/30 rounded-2xl overflow-hidden shadow-2xl">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+          <div className="overflow-x-auto w-full">
+            <table className="w-full min-w-[720px] text-left border-collapse">
               <thead>
                 <tr className="bg-slate-800/60 border-b border-indigo-900/30 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                   <th className="p-4">Student</th>

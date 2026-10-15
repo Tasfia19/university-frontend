@@ -60,7 +60,7 @@ export default function CoursesPage() {
         </div>
 
         {/* URL Search Bar */}
-        <form onSubmit={handleSearchSubmit} className="max-w-xl mx-auto mb-10 flex gap-2">
+        <form onSubmit={handleSearchSubmit} className="max-w-xl mx-auto mb-10 flex flex-col sm:flex-row gap-2">
           <div className="relative flex-1">
             <Search className="w-5 h-5 absolute left-3 top-3 text-slate-400" />
             <input

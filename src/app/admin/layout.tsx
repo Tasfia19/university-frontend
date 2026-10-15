@@ -1,10 +1,5 @@
-import Sidebar from '@/components/Sidebar';
+import DashboardLayout from '@/components/DashboardLayout';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100">
-      <Sidebar role="ADMIN" />
-      <main className="flex-1 p-8 overflow-y-auto">{children}</main>
-    </div>
-  );
+  return <DashboardLayout role="ADMIN">{children}</DashboardLayout>;
 }

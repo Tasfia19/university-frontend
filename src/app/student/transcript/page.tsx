@@ -57,34 +57,36 @@ export default function StudentTranscriptPage() {
 
           {/* Grades Table */}
           <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-800/60 border-b border-slate-800 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                  <th className="p-4">Course Code</th>
-                  <th className="p-4">Course Title</th>
-                  <th className="p-4">Credits</th>
-                  <th className="p-4">Marks</th>
-                  <th className="p-4">Grade</th>
-                  <th className="p-4 text-right">Grade Point</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800 text-sm">
-                {transcript?.grades?.map((g: any) => (
-                  <tr key={g.id} className="hover:bg-slate-800/40 transition">
-                    <td className="p-4 font-bold text-blue-400">{g.courseCode}</td>
-                    <td className="p-4 text-white font-medium">{g.courseTitle}</td>
-                    <td className="p-4 text-slate-300">{g.credits}</td>
-                    <td className="p-4 text-slate-300">{g.marks}</td>
-                    <td className="p-4">
-                      <span className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold px-2.5 py-1 rounded-md text-xs">
-                        {g.letterGrade}
-                      </span>
-                    </td>
-                    <td className="p-4 text-right font-bold text-white">{g.gradePoint.toFixed(2)}</td>
+            <div className="overflow-x-auto w-full">
+              <table className="w-full min-w-[550px] text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-800/60 border-b border-slate-800 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                    <th className="p-4">Course Code</th>
+                    <th className="p-4">Course Title</th>
+                    <th className="p-4">Credits</th>
+                    <th className="p-4">Marks</th>
+                    <th className="p-4">Grade</th>
+                    <th className="p-4 text-right">Grade Point</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-800 text-sm">
+                  {transcript?.grades?.map((g: any) => (
+                    <tr key={g.id} className="hover:bg-slate-800/40 transition">
+                      <td className="p-4 font-bold text-blue-400 whitespace-nowrap">{g.courseCode}</td>
+                      <td className="p-4 text-white font-medium">{g.courseTitle}</td>
+                      <td className="p-4 text-slate-300 whitespace-nowrap">{g.credits}</td>
+                      <td className="p-4 text-slate-300 whitespace-nowrap">{g.marks}</td>
+                      <td className="p-4 whitespace-nowrap">
+                        <span className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold px-2.5 py-1 rounded-md text-xs">
+                          {g.letterGrade}
+                        </span>
+                      </td>
+                      <td className="p-4 text-right font-bold text-white whitespace-nowrap">{g.gradePoint.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
